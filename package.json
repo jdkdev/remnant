@@ -1,0 +1,41 @@
+{
+  "name": "@frontierjs/spa-template",
+  "version": "0.0.0-beta.0",
+  "scripts": {
+    "transfer:up": "run-s build deploy:hot",
+    "build": "rollup -c --environment INCLUDE_DEPS,BUILD:production",
+    "dev": "run-p watch:routify watch:rollup",
+    "watch:rollup": "rollup -c -w",
+    "watch:routify": "routify",
+    "start": "sirv dist --single",
+    "css-dev": "node-sass --watch --recursive --output dist/css --source-map true --source-map-contents scss",
+    "watch:css": "css-dev",
+    "tar": "tar -czvf $NAME-spa.tar.gz -C dist .",
+    "pack": "run-s build tar",
+    "clean": "rm ./$NAME-spa.tar.gz"
+  },
+  "devDependencies": {
+    "@frontierjs/frontend": "github:frontierjs/frontend",
+    "@rollup/plugin-alias": "^3.0.0",
+    "@rollup/plugin-node-resolve": "^6.0.0",
+    "@rollup/plugin-replace": "^2.3.0",
+    "autoprefixer": "^9.7.3",
+    "date-fns": "^2.8.1",
+    "node-sass": "^4.13.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.12.0",
+    "rollup-plugin-commonjs": "^10.0.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-scss": "^1.0.2",
+    "rollup-plugin-svelte": "^5.0.3",
+    "rollup-plugin-terser": "^5.1.2",
+    "sirv": "^0.4.2",
+    "svelte": "^3.20.1",
+    "svelte-preprocess": "^3.2.6",
+    "ygdir": "^1.19.1"
+  },
+  "dependencies": {
+    "@sveltech/routify": "^1.0.1-32",
+    "sirv-cli": "^0.4.5"
+  }
+}
