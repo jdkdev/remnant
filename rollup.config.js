@@ -6,12 +6,25 @@ import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
 import alias from '@rollup/plugin-alias'
 import replace from '@rollup/plugin-replace'
+import sveltePreprocess from 'svelte-preprocess'
 import sass from 'node-sass'
 
 const production = !process.env.ROLLUP_WATCH
-const isProduction = process.env.BUILD === 'production'
+// const isProduction = process.env.BUILD === 'production'
 
-let apiUrl = 'http://localhost:3190/api/v1'
+let apiUrl = production
+  ? 'https://remnant.midrash.pro/api/v1'
+  : 'http://localhost:3190/api/v1'
+// let authUrl = production ? 'https://auth.knight.works/api/v1' : 'http://localhost:3190/api/v1'
+let authUrl = 'https://auth.knight.works/api/v1'
+const preprocess = sveltePreprocess({
+  scss: {
+    includePaths: ['src']
+  },
+  postcss: {
+    plugins: [require('autoprefixer')]
+  }
+})
 
 export default {
   input: 'src/index.js',
@@ -23,13 +36,12 @@ export default {
   },
   plugins: [
     replace({
-      // __AUTH_URL__: apiUrl + '/login',
-      //__API_URL__: apiUrl,
-       __API_URL__: 'https://remnant.midrash.pro/api/v1',
-      __AUTH_URL__: 'https://auth.knight.works/api/v1/login'
+      __AUTH_URL__: authUrl + '/login',
+      __API_URL__: apiUrl
     }),
     alias({
       entries: [
+        { find: '$scss', replacement: 'scss' },
         { find: '$p', replacement: 'src/pages' },
         { find: '$c', replacement: 'src/components' },
         { find: '$frontier', replacement: '@frontierjs/frontend' },
@@ -45,30 +57,32 @@ export default {
       css: css => {
         css.write('dist/build/bundle.css')
       },
-      preprocess: {
-        style: ({ content, attributes }) => {
-          if (attributes.type !== 'text/scss') return
 
-          return new Promise((fulfil, reject) => {
-            sass.render(
-              {
-                data: content,
-                includePaths: ['src'],
-                sourceMap: true,
-                outFile: 'x' // this is necessary, but is ignored
-              },
-              (err, result) => {
-                if (err) return reject(err)
+      // preprocess: {
+      //   style: ({ content, attributes }) => {
+      //     if (attributes.type !== 'text/scss') return
 
-                fulfil({
-                  code: result.css.toString(),
-                  map: result.map.toString()
-                })
-              }
-            )
-          })
-        }
-      }
+      //     return new Promise((fulfil, reject) => {
+      //       sass.render(
+      //         {
+      //           data: content,
+      //           includePaths: ['src'],
+      //           sourceMap: true,
+      //           outFile: 'x' // this is necessary, but is ignored
+      //         },
+      //         (err, result) => {
+      //           if (err) return reject(err)
+
+      //           fulfil({
+      //             code: result.css.toString(),
+      //             map: result.map.toString()
+      //           })
+      //         }
+      //       )
+      //     })
+      //   }
+      // }
+      preprocess: preprocess
     }),
 
     // If you have external dependencies installed from

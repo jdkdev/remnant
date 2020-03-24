@@ -14,47 +14,74 @@
 </script>
 
 <style type="text/scss" global>
-  @import "../../scss/index.scss";
+  @import "../../../scss/index.scss";
   @mixin site-layout() {
-    // DEFAULT
-    display: flex;
-    flex-flow: column;
-    #header {
-      @include debug-bps;
+    /* DEFAULTS*/
+    #search {
     }
-    #content {
-      @include debug-bps;
+    #references {
+      display: none;
+    }
+    #active-verse {
+    }
+    #lemmata {
+      display: none;
+    }
+    #reader {
+      display: none;
+    }
+    #fathers {
+    }
+    #history {
+    }
+    #links {
     }
     #footer {
-      padding: 20px 0;
-      @include debug-bps;
       &:after {
         content: "Footer";
       }
     }
-
+    display: flex;
+    flex-flow: column;
     // XXS
     @include xxs {
     }
     // XS
-    @include xs {
+    @include xs() {
     }
 
     // SM
     @include sm {
       display: grid;
-      grid:
-        [start] 1fr [end] / [start]
+      grid-template-rows:
+        [start]
+        repeat(auto-fit, minmax($block, 1fr)) [end];
+      grid-template-columns:
+        [start]
         repeat(auto-fit, minmax($block, 1fr)) [end];
 
-      #header {
-        grid-column: start / span 2;
+      #search {
+        @include g-x(start, span 2);
+        @include g-y;
+        // grid-row: start / end;
       }
-      #content {
+      #active-verse {
         @include g-x(3, end);
+        // grid-column: 3 / span -2;
+      }
+      #reader {
+        display: block;
+        @include g-x;
+        @include debug-bps;
+      }
+      #history {
+        @include g-x(-2, -1);
+      }
+      #links {
+        @include g-x;
       }
       #footer {
-        grid-column: start / end;
+        @include g-x;
       }
     }
 
@@ -76,20 +103,15 @@
     }
   }
 
-  #app {
+  #study {
     height: 100%;
     @include site-layout;
     @include debug-bps;
   }
 </style>
 
-<section id="app">
-  <article id="header">
-    <Header />
-  </article>
-  <article id="content">
-    <slot />
-  </article>
+<section id="study">
+  <slot />
   <article id="footer">
     <Footer />
   </article>

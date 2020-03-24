@@ -2,187 +2,22 @@
   Stylesheet for FrontierJS
   ITCSS + BEM
    ========================================================================== */
-
 /* Settings: preprocessor variables, colors, global settings
    ========================================================================== */
-
 /* Generic: CSS reset, box-sizing, global CSS tweaks
    ========================================================================== */
-
 /* Elements: element selectors, CMS-generated content
    ========================================================================== */
-
 /* Objects: layout-related CSS, grid, SVG icons frame, flexbox classes
    ========================================================================== */
-
 /* Components: separately styled components (buttons, form inputs, toolbars...)
    ========================================================================== */
-
 /* Forms 
    ========== */
-
 /* Buttons
    ========== */
-
 /* Utilities: specific helper classes, overrides
    ========================================================================== */
-$unit: 16px;
-$block: $unit * 8;
-
-$bl: $block;
-$sec: $block * 2;
-$xxs: $block * 3;
-$xs: $block * 4;
-$sm: $block * 5;
-$md: $block * 6;
-$ml: $block * 7;
-$lg: $block * 8;
-$xl: $block * 9;
-$xxl: $block * 10;
-$huge: $block * 20;
-
-$bps: (
-  'bl': $bl,
-  'sec': $sec,
-  'xxs': $xxs,
-  'xs': $xs,
-  'sm': $sm,
-  'md': $md,
-  'ml': $ml,
-  'lg': $lg,
-  'xl': $xl,
-  'xxl': $xxl,
-  'huge': $huge
-);
-
-// Core Mixins
-@mixin grid-span($x-start: start, $x-end: end, $y-start: start, $y-end: end) {
-  grid-column-start: $x-start;
-  grid-column-end: $x-end;
-  grid-row-start: $y-start;
-  grid-row-end: $y-end;
-}
-
-@mixin g-x($start: start, $end: end) {
-  grid-column-start: $start;
-  grid-column-end: $end;
-}
-
-@mixin g-y($start: start, $end: end) {
-  grid-row-start: $start;
-  grid-row-end: $end;
-}
-
-@mixin min-bp($bp) {
-  @if map-has-key($bps, $bp) {
-    @media (min-width: #{map-get($bps, $bp)}) {
-      @content;
-    }
-  } @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$bp}`. "
-        + "Please make sure it is defined in `$breakpoints` map.";
-  }
-}
-
-@mixin max-bp($bp) {
-  @if map-has-key($bps, $bp) {
-    @media (max-width: #{map-get($bps, $bp)}) {
-      @content;
-    }
-  } @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$bp}`. "
-        + "Please make sure it is defined in `$breakpoints` map.";
-  }
-}
-
-@mixin bp($start, $stop: huge) {
-  @include max-bp($stop) {
-    @include min-bp($start) {
-      @content;
-    }
-  }
-}
-
-// Child Mixins
-@mixin bl($stop: huge) {
-  @include bp(bl, $stop) {
-    @content;
-  }
-}
-@mixin sec($stop: huge) {
-  @include bp(sec, $stop) {
-    @content;
-  }
-}
-@mixin xxs($stop: huge) {
-  @include bp(xxs, $stop) {
-    @content;
-  }
-}
-@mixin xs($stop: huge) {
-  @include bp(xs, $stop) {
-    @content;
-  }
-}
-@mixin sm($stop: huge) {
-  @include bp(sm, $stop) {
-    @content;
-  }
-}
-@mixin md($stop: huge) {
-  @include bp(md, $stop) {
-    @content;
-  }
-}
-@mixin ml($stop: huge) {
-  @include bp(ml, $stop) {
-    @content;
-  }
-}
-@mixin lg($stop: huge) {
-  @include bp(lg, $stop) {
-    @content;
-  }
-}
-@mixin xl($stop: huge) {
-  @include bp(xl, $stop) {
-    @content;
-  }
-}
-@mixin xxl($stop: huge) {
-  @include bp(xxl, $stop) {
-    @content;
-  }
-}
-
-@mixin debug-bps {
-  border: 3px solid white;
-  @include xxs {
-    border: 3px solid black;
-  }
-  @include xs {
-    border: 3px solid red;
-  }
-  @include sm {
-    border: 3px solid orange;
-  }
-  @include md {
-    border: 3px solid yellow;
-  }
-  @include ml {
-    border: 3px solid green;
-  }
-  @include lg {
-    border: 3px solid blue;
-  }
-  @include xl {
-    border: 3px solid indigo;
-  }
-  @include xxl {
-    border: 3px solid violet;
-  }
-}
-
 /* Example
 * You can use @include bp({start}, {stop})
 * or an single breakpoint @include sm({stop})
@@ -272,7 +107,6 @@ $bps: (
 }
 
 */
-
 .card,
 .modal .overlay ~ * {
   position: relative;
@@ -283,8 +117,8 @@ $bps: (
   overflow: hidden;
   text-align: left;
   background: #fff;
-  margin-bottom: 0.6em;
-}
+  margin-bottom: 0.6em; }
+
 .card.scroller {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -292,12 +126,12 @@ $bps: (
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
-  flex-direction: column;
-}
+  flex-direction: column; }
+
 .card.scroller > article {
   -webkit-box-flex: 1;
-
   -ms-flex: auto;
   flex: auto;
-  overflow-y: auto;
-}
+  overflow-y: auto; }
+
+/*# sourceMappingURL=index.css.map */

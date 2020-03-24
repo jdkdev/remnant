@@ -28,6 +28,9 @@
   }
 </style>
 
-<div class="o-container-vertical">
-  <div class="o-container-home">Logged in: {$currentUser.email}</div>
+<div class="o-container">
+  <div>
+    Welcome to the dashboard
+    <a href="/study">Study</a>
+  </div>
 </div>
