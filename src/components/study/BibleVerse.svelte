@@ -30,7 +30,7 @@
     <!-- <sup v-if="verse.fathers.length" title="Church references"> [{{ verse.fathers.length }}] </sup> -->
     <a
       class="v--"
-      style="max-width: 10vmin;"
+      style="width: 11vmin;"
       href="#"
       on:click={clickVerse}
       title="Set Current verse">
@@ -43,7 +43,7 @@
       <span class="bible-text">{verse.text}</span>
     </a>
   {:else}
-    <div class="px_">
+    <div class="pl">
       <p class="bible-lan" title={verse.reference}>
         <bdi>{verse.text}</bdi>
       </p>

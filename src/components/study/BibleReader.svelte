@@ -43,22 +43,22 @@
 </style>
 
 <div class="card scroller e*">
-  <header>
+  <header class="row _y i py-">
     <span
       on:click={() => (studyGrid = !studyGrid)}
       class="pointer"
       title={'Change current book - ' + activeBook.book_id}>
       {activeBook.book_name}
     </span>
-    <span>
-      <span
-        class="pointer"
-        title="Toggle Reader View"
-        on:click={() => (readerView = !readerView)}>
-        <!-- <i class="fa-eye-slash" title={readerView ? 'fas' : 'far'} /> -->
-        &#9881;
-      </span>
-      <span class="v--">
+    <span
+      class="pointer px"
+      title="Toggle Reader View"
+      on:click={() => (readerView = !readerView)}>
+      <!-- <i class="fa-eye-slash" title={readerView ? 'fas' : 'far'} /> -->
+      &#9881;
+    </span>
+    <span class="ox i">
+      <span class="row v--" style="">
         {#each Array(chapters) as chapter, i}
           <a href={chapterAnchor(i + 1)} title="Chapters">{i + 1}</a>
         {/each}

@@ -106,7 +106,7 @@
   <title>Remnant</title>
 </svelte:head>
 
-<article id="search" class="card scroller e++ p">
+<article id="search" class="card scroller e++ p" style="min-height: 70px;">
   <div class="row i">
     <Field
       classes=""
