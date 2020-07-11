@@ -42,7 +42,7 @@
   }
 </style>
 
-<div class="scroller">
+<div class="card scroller e*">
   <header>
     <span
       on:click={() => (studyGrid = !studyGrid)}
@@ -50,39 +50,29 @@
       title={'Change current book - ' + activeBook.book_id}>
       {activeBook.book_name}
     </span>
-    <small>
+    <span>
       <span
         class="pointer"
         title="Toggle Reader View"
         on:click={() => (readerView = !readerView)}>
-        <i class="fa-eye-slash" title={readerView ? 'fas' : 'far'} />
+        <!-- <i class="fa-eye-slash" title={readerView ? 'fas' : 'far'} /> -->
+        &#9881;
       </span>
-      <small>
+      <span class="v--">
         {#each Array(chapters) as chapter, i}
           <a href={chapterAnchor(i + 1)} title="Chapters">{i + 1}</a>
         {/each}
-      </small>
-    </small>
+      </span>
+    </span>
   </header>
-  <div>
+  <article class="" style="overflow-y:auto;">
     {#if activeBook && studyGrid}
       {#each activeBook.verses as verse}
-        <BibleVerse {verse} on:verseChanged reader-view="readerView" />
+        <BibleVerse {verse} on:verseChanged {readerView} />
       {/each}
     {:else}
       <BibleBook books={bibleIndices} on:bookChanged={setActiveBook} />
     {/if}
 
-  </div>
+  </article>
 </div>
-
-<!-- {#if studyGrid}
-      <BibleVerse
-        v-for="verse in activeBook.verses"
-        :key="verse.verse_id"
-        :verse="verse"
-        :reader-view="readerView" />
-    {:else}
-      <BibleBook books="bibleIndex" />
-    {/if} 
-    -->

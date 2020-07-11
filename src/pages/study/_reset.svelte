@@ -28,7 +28,6 @@
       display: none;
     }
     #reader {
-      display: none;
     }
     #fathers {
     }
@@ -72,7 +71,7 @@
       #reader {
         display: block;
         @include g-x;
-        @include debug-bps;
+        // @include debug-bps;
       }
       #history {
         @include g-x(-2, -1);
@@ -106,7 +105,7 @@
   #study {
     height: 100%;
     @include site-layout;
-    @include debug-bps;
+    // @include debug-bps;
   }
 </style>
 

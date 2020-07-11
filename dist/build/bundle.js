@@ -4224,13 +4224,13 @@ var app = (function () {
     			article2 = element("article");
     			create_component(footer.$$.fragment);
     			attr_dev(article0, "id", "header");
-    			add_location(article0, file$4, 300, 2, 19556);
+    			add_location(article0, file$4, 16, 2, 398);
     			attr_dev(article1, "id", "content");
-    			add_location(article1, file$4, 303, 2, 19608);
+    			add_location(article1, file$4, 19, 2, 450);
     			attr_dev(article2, "id", "footer");
-    			add_location(article2, file$4, 306, 2, 19659);
+    			add_location(article2, file$4, 22, 2, 501);
     			attr_dev(section, "id", "app");
-    			add_location(section, file$4, 299, 0, 19535);
+    			add_location(section, file$4, 15, 0, 377);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8834,9 +8834,9 @@ var app = (function () {
     			article = element("article");
     			create_component(footer.$$.fragment);
     			attr_dev(article, "id", "footer");
-    			add_location(article, file$b, 255, 2, 17133);
+    			add_location(article, file$b, 185, 2, 10982);
     			attr_dev(section, "id", "study");
-    			add_location(section, file$b, 253, 0, 17099);
+    			add_location(section, file$b, 183, 0, 10948);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8961,13 +8961,14 @@ var app = (function () {
     const { console: console_1$1 } = globals;
     const file$c = "src/components/study/BibleVerse.svelte";
 
-    // (43:2) {:else}
+    // (46:2) {:else}
     function create_else_block$3(ctx) {
     	let div;
     	let p;
     	let bdi;
-    	let t_value = /*verse*/ ctx[0].translation.bible_hub + "";
+    	let t_value = /*verse*/ ctx[0].text + "";
     	let t;
+    	let p_title_value;
 
     	const block = {
     		c: function create() {
@@ -8975,10 +8976,12 @@ var app = (function () {
     			p = element("p");
     			bdi = element("bdi");
     			t = text(t_value);
-    			add_location(bdi, file$c, 45, 8, 1385);
+    			add_location(bdi, file$c, 48, 8, 1279);
     			attr_dev(p, "class", "bible-lan");
-    			add_location(p, file$c, 44, 6, 1355);
-    			add_location(div, file$c, 43, 4, 1343);
+    			attr_dev(p, "title", p_title_value = /*verse*/ ctx[0].reference);
+    			add_location(p, file$c, 47, 6, 1225);
+    			attr_dev(div, "class", "px_");
+    			add_location(div, file$c, 46, 4, 1201);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -8987,7 +8990,11 @@ var app = (function () {
     			append_dev(bdi, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*verse*/ 1 && t_value !== (t_value = /*verse*/ ctx[0].translation.bible_hub + "")) set_data_dev(t, t_value);
+    			if (dirty & /*verse*/ 1 && t_value !== (t_value = /*verse*/ ctx[0].text + "")) set_data_dev(t, t_value);
+
+    			if (dirty & /*verse*/ 1 && p_title_value !== (p_title_value = /*verse*/ ctx[0].reference)) {
+    				attr_dev(p, "title", p_title_value);
+    			}
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div);
@@ -8998,14 +9005,14 @@ var app = (function () {
     		block,
     		id: create_else_block$3.name,
     		type: "else",
-    		source: "(43:2) {:else}",
+    		source: "(46:2) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (32:2) {#if !readerView}
+    // (30:2) {#if !readerView}
     function create_if_block$5(ctx) {
     	let a0;
     	let strong;
@@ -9028,17 +9035,18 @@ var app = (function () {
     			a1 = element("a");
     			span = element("span");
     			t2 = text(t2_value);
-    			add_location(strong, file$c, 34, 6, 1122);
-    			attr_dev(a0, "class", "ref svelte-18b4pfz");
+    			add_location(strong, file$c, 37, 6, 980);
+    			attr_dev(a0, "class", "v--");
+    			set_style(a0, "max-width", "10vmin");
     			attr_dev(a0, "href", "#");
     			attr_dev(a0, "title", "Set Current verse");
-    			add_location(a0, file$c, 33, 4, 1043);
+    			add_location(a0, file$c, 31, 4, 844);
     			attr_dev(span, "class", "bible-text");
-    			add_location(span, file$c, 40, 6, 1275);
+    			add_location(span, file$c, 43, 6, 1133);
     			attr_dev(a1, "href", /*hubLink*/ ctx[2]);
     			attr_dev(a1, "target", "_blank");
     			attr_dev(a1, "title", a1_title_value = /*verse*/ ctx[0].reference + " View at BibleHub");
-    			add_location(a1, file$c, 36, 4, 1170);
+    			add_location(a1, file$c, 39, 4, 1028);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, a0, anchor);
@@ -9071,7 +9079,7 @@ var app = (function () {
     		block,
     		id: create_if_block$5.name,
     		type: "if",
-    		source: "(32:2) {#if !readerView}",
+    		source: "(30:2) {#if !readerView}",
     		ctx
     	});
 
@@ -9098,10 +9106,10 @@ var app = (function () {
     			if_block.c();
     			t = space();
     			br = element("br");
-    			add_location(br, file$c, 49, 2, 1458);
+    			add_location(br, file$c, 52, 2, 1335);
     			attr_dev(div, "id", div_id_value = /*verse*/ ctx[0].verse_id);
-    			attr_dev(div, "class", "verse");
-    			add_location(div, file$c, 30, 0, 870);
+    			attr_dev(div, "class", "row");
+    			add_location(div, file$c, 28, 0, 673);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -9461,7 +9469,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (57:8) {#each Array(chapters) as chapter, i}
+    // (58:8) {#each Array(chapters) as chapter, i}
     function create_each_block_1$1(ctx) {
     	let a;
     	let t_value = /*i*/ ctx[17] + 1 + "";
@@ -9474,7 +9482,7 @@ var app = (function () {
     			t = text(t_value);
     			attr_dev(a, "href", a_href_value = /*chapterAnchor*/ ctx[6](/*i*/ ctx[17] + 1));
     			attr_dev(a, "title", "Chapters");
-    			add_location(a, file$e, 57, 10, 2066);
+    			add_location(a, file$e, 58, 10, 2109);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -9490,14 +9498,14 @@ var app = (function () {
     		block,
     		id: create_each_block_1$1.name,
     		type: "each",
-    		source: "(57:8) {#each Array(chapters) as chapter, i}",
+    		source: "(58:8) {#each Array(chapters) as chapter, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:4) {:else}
+    // (69:4) {:else}
     function create_else_block$4(ctx) {
     	let current;
 
@@ -9539,14 +9547,14 @@ var app = (function () {
     		block,
     		id: create_else_block$4.name,
     		type: "else",
-    		source: "(68:4) {:else}",
+    		source: "(69:4) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (64:4) {#if activeBook && studyGrid}
+    // (65:4) {#if activeBook && studyGrid}
     function create_if_block$6(ctx) {
     	let each_1_anchor;
     	let current;
@@ -9579,7 +9587,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*activeBook*/ 1) {
+    			if (dirty & /*activeBook, readerView*/ 9) {
     				each_value = /*activeBook*/ ctx[0].verses;
     				validate_each_argument(each_value);
     				let i;
@@ -9635,21 +9643,21 @@ var app = (function () {
     		block,
     		id: create_if_block$6.name,
     		type: "if",
-    		source: "(64:4) {#if activeBook && studyGrid}",
+    		source: "(65:4) {#if activeBook && studyGrid}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (65:6) {#each activeBook.verses as verse}
+    // (66:6) {#each activeBook.verses as verse}
     function create_each_block$3(ctx) {
     	let current;
 
     	const bibleverse = new BibleVerse({
     			props: {
     				verse: /*verse*/ ctx[12],
-    				"reader-view": "readerView"
+    				readerView: /*readerView*/ ctx[3]
     			},
     			$$inline: true
     		});
@@ -9667,6 +9675,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const bibleverse_changes = {};
     			if (dirty & /*activeBook*/ 1) bibleverse_changes.verse = /*verse*/ ctx[12];
+    			if (dirty & /*readerView*/ 8) bibleverse_changes.readerView = /*readerView*/ ctx[3];
     			bibleverse.$set(bibleverse_changes);
     		},
     		i: function intro(local) {
@@ -9687,7 +9696,7 @@ var app = (function () {
     		block,
     		id: create_each_block$3.name,
     		type: "each",
-    		source: "(65:6) {#each activeBook.verses as verse}",
+    		source: "(66:6) {#each activeBook.verses as verse}",
     		ctx
     	});
 
@@ -9695,21 +9704,19 @@ var app = (function () {
     }
 
     function create_fragment$g(ctx) {
-    	let div1;
+    	let div;
     	let header;
     	let span0;
     	let t0_value = /*activeBook*/ ctx[0].book_name + "";
     	let t0;
     	let span0_title_value;
     	let t1;
-    	let small1;
+    	let span3;
     	let span1;
-    	let i;
-    	let i_title_value;
-    	let t2;
-    	let small0;
     	let t3;
-    	let div0;
+    	let span2;
+    	let t4;
+    	let article;
     	let current_block_type_index;
     	let if_block;
     	let current;
@@ -9735,62 +9742,61 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
+    			div = element("div");
     			header = element("header");
     			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
-    			small1 = element("small");
+    			span3 = element("span");
     			span1 = element("span");
-    			i = element("i");
-    			t2 = space();
-    			small0 = element("small");
+    			span1.textContent = "⚙";
+    			t3 = space();
+    			span2 = element("span");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t3 = space();
-    			div0 = element("div");
+    			t4 = space();
+    			article = element("article");
     			if_block.c();
     			attr_dev(span0, "class", "pointer");
     			attr_dev(span0, "title", span0_title_value = "Change current book - " + /*activeBook*/ ctx[0].book_id);
-    			add_location(span0, file$e, 42, 4, 1598);
-    			attr_dev(i, "class", "fa-eye-slash");
-    			attr_dev(i, "title", i_title_value = /*readerView*/ ctx[3] ? "fas" : "far");
-    			add_location(i, file$e, 53, 8, 1920);
+    			add_location(span0, file$e, 42, 4, 1606);
     			attr_dev(span1, "class", "pointer");
     			attr_dev(span1, "title", "Toggle Reader View");
-    			add_location(span1, file$e, 49, 6, 1794);
-    			add_location(small0, file$e, 55, 6, 2002);
-    			add_location(small1, file$e, 48, 4, 1780);
-    			add_location(header, file$e, 41, 2, 1585);
-    			add_location(div0, file$e, 62, 2, 2184);
-    			attr_dev(div1, "class", "scroller svelte-1wdlpjx");
-    			add_location(div1, file$e, 40, 0, 1560);
+    			add_location(span1, file$e, 49, 6, 1801);
+    			attr_dev(span2, "class", "v--");
+    			add_location(span2, file$e, 56, 6, 2034);
+    			add_location(span3, file$e, 48, 4, 1788);
+    			add_location(header, file$e, 41, 2, 1593);
+    			attr_dev(article, "class", "");
+    			set_style(article, "overflow-y", "auto");
+    			add_location(article, file$e, 63, 2, 2225);
+    			attr_dev(div, "class", "card scroller e* svelte-1wdlpjx");
+    			add_location(div, file$e, 40, 0, 1560);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor, remount) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, header);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, header);
     			append_dev(header, span0);
     			append_dev(span0, t0);
     			append_dev(header, t1);
-    			append_dev(header, small1);
-    			append_dev(small1, span1);
-    			append_dev(span1, i);
-    			append_dev(small1, t2);
-    			append_dev(small1, small0);
+    			append_dev(header, span3);
+    			append_dev(span3, span1);
+    			append_dev(span3, t3);
+    			append_dev(span3, span2);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
-    				each_blocks[i].m(small0, null);
+    				each_blocks[i].m(span2, null);
     			}
 
-    			append_dev(div1, t3);
-    			append_dev(div1, div0);
-    			if_blocks[current_block_type_index].m(div0, null);
+    			append_dev(div, t4);
+    			append_dev(div, article);
+    			if_blocks[current_block_type_index].m(article, null);
     			current = true;
     			if (remount) run_all(dispose);
 
@@ -9806,10 +9812,6 @@ var app = (function () {
     				attr_dev(span0, "title", span0_title_value);
     			}
 
-    			if (!current || dirty & /*readerView*/ 8 && i_title_value !== (i_title_value = /*readerView*/ ctx[3] ? "fas" : "far")) {
-    				attr_dev(i, "title", i_title_value);
-    			}
-
     			if (dirty & /*chapterAnchor, chapters*/ 80) {
     				each_value_1 = Array(/*chapters*/ ctx[4]);
     				validate_each_argument(each_value_1);
@@ -9823,7 +9825,7 @@ var app = (function () {
     					} else {
     						each_blocks[i] = create_each_block_1$1(child_ctx);
     						each_blocks[i].c();
-    						each_blocks[i].m(small0, null);
+    						each_blocks[i].m(span2, null);
     					}
     				}
 
@@ -9855,7 +9857,7 @@ var app = (function () {
     				}
 
     				transition_in(if_block, 1);
-    				if_block.m(div0, null);
+    				if_block.m(article, null);
     			}
     		},
     		i: function intro(local) {
@@ -9868,7 +9870,7 @@ var app = (function () {
     			current = false;
     		},
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div1);
+    			if (detaching) detach_dev(div);
     			destroy_each(each_blocks, detaching);
     			if_blocks[current_block_type_index].d();
     			run_all(dispose);
@@ -10017,7 +10019,6 @@ var app = (function () {
     }
 
     /* src/components/study/Verse.svelte generated by Svelte v3.20.1 */
-
     const file$f = "src/components/study/Verse.svelte";
 
     function create_fragment$h(ctx) {
@@ -10034,9 +10035,9 @@ var app = (function () {
     			a = element("a");
     			t = text(t_value);
     			attr_dev(a, "title", a_title_value = /*verse*/ ctx[0].text);
-    			add_location(a, file$f, 12, 4, 200);
+    			add_location(a, file$f, 16, 2, 388);
     			attr_dev(div, "class", "verse");
-    			add_location(div, file$f, 11, 0, 176);
+    			add_location(div, file$f, 15, 0, 366);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10048,9 +10049,9 @@ var app = (function () {
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(a, "click", clickVerse, false, false, false),
-    				listen_dev(a, "mouseover", hoverVerse, false, false, false),
-    				listen_dev(a, "mouseleave", hoverVerse, false, false, false)
+    				listen_dev(a, "click", /*clickVerse*/ ctx[1], false, false, false),
+    				listen_dev(a, "mouseover", /*hoverVerse*/ ctx[2], false, false, false),
+    				listen_dev(a, "mouseleave", /*hoverVerse*/ ctx[2], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
@@ -10079,16 +10080,20 @@ var app = (function () {
     	return block;
     }
 
-    function clickVerse() {
-    	
-    } // Bus.$emit('setActiveVerse', verse)
-
-    function hoverVerse() {
-    	
-    } //Bus.$emit('hoveringVerse', verse)
-
     function instance$h($$self, $$props, $$invalidate) {
     	let { verse = {} } = $$props;
+    	const dispatch = createEventDispatcher();
+
+    	function clickVerse() {
+    		// Bus.$emit('setActiveVerse', verse)
+    		dispatch("verseChanged", { verse });
+    	}
+
+    	function hoverVerse() {
+    		//Bus.$emit('hoveringVerse', verse)
+    		dispatch("hovering-verse", { verse });
+    	}
+
     	const writable_props = ["verse"];
 
     	Object.keys($$props).forEach(key => {
@@ -10102,7 +10107,13 @@ var app = (function () {
     		if ("verse" in $$props) $$invalidate(0, verse = $$props.verse);
     	};
 
-    	$$self.$capture_state = () => ({ verse, clickVerse, hoverVerse });
+    	$$self.$capture_state = () => ({
+    		createEventDispatcher,
+    		verse,
+    		dispatch,
+    		clickVerse,
+    		hoverVerse
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ("verse" in $$props) $$invalidate(0, verse = $$props.verse);
@@ -10112,7 +10123,7 @@ var app = (function () {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [verse];
+    	return [verse, clickVerse, hoverVerse];
     }
 
     class Verse extends SvelteComponentDev {
@@ -10144,23 +10155,23 @@ var app = (function () {
 
     function get_each_context$4(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[18] = list[i];
+    	child_ctx[21] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_1$2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[21] = list[i];
+    	child_ctx[24] = list[i];
     	return child_ctx;
     }
 
     function get_each_context_2(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[24] = list[i];
+    	child_ctx[27] = list[i];
     	return child_ctx;
     }
 
-    // (108:2) {#if searchResults.length}
+    // (120:2) {#if searchResults.length}
     function create_if_block_2$2(ctx) {
     	let article;
     	let current;
@@ -10186,7 +10197,7 @@ var app = (function () {
 
     			attr_dev(article, "id", "search-results");
     			attr_dev(article, "class", "");
-    			add_location(article, file$g, 108, 4, 2962);
+    			add_location(article, file$g, 120, 4, 3320);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, article, anchor);
@@ -10198,7 +10209,7 @@ var app = (function () {
     			current = true;
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*searchResults*/ 2) {
+    			if (dirty & /*searchResults, setActiveVerse*/ 66) {
     				each_value_2 = /*searchResults*/ ctx[1];
     				validate_each_argument(each_value_2);
     				let i;
@@ -10254,21 +10265,23 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(108:2) {#if searchResults.length}",
+    		source: "(120:2) {#if searchResults.length}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (110:6) {#each searchResults as verse}
+    // (122:6) {#each searchResults as verse}
     function create_each_block_2(ctx) {
     	let current;
 
     	const verse = new Verse({
-    			props: { verse: /*verse*/ ctx[24] },
+    			props: { verse: /*verse*/ ctx[27] },
     			$$inline: true
     		});
+
+    	verse.$on("verseChanged", /*setActiveVerse*/ ctx[6]);
 
     	const block = {
     		c: function create() {
@@ -10280,7 +10293,7 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const verse_changes = {};
-    			if (dirty & /*searchResults*/ 2) verse_changes.verse = /*verse*/ ctx[24];
+    			if (dirty & /*searchResults*/ 2) verse_changes.verse = /*verse*/ ctx[27];
     			verse.$set(verse_changes);
     		},
     		i: function intro(local) {
@@ -10301,14 +10314,14 @@ var app = (function () {
     		block,
     		id: create_each_block_2.name,
     		type: "each",
-    		source: "(110:6) {#each searchResults as verse}",
+    		source: "(122:6) {#each searchResults as verse}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (122:4) {#if seferiaResults.length}
+    // (134:4) {#if seferiaResults.length}
     function create_if_block_1$4(ctx) {
     	let each_1_anchor;
     	let each_value_1 = /*seferiaResults*/ ctx[2];
@@ -10369,17 +10382,17 @@ var app = (function () {
     		block,
     		id: create_if_block_1$4.name,
     		type: "if",
-    		source: "(122:4) {#if seferiaResults.length}",
+    		source: "(134:4) {#if seferiaResults.length}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (123:6) {#each seferiaResults as ref}
+    // (135:6) {#each seferiaResults as ref}
     function create_each_block_1$2(ctx) {
     	let a;
-    	let t0_value = /*ref*/ ctx[21].ref + "";
+    	let t0_value = /*ref*/ ctx[24].ref + "";
     	let t0;
     	let a_href_value;
     	let a_title_value;
@@ -10392,11 +10405,11 @@ var app = (function () {
     			t0 = text(t0_value);
     			t1 = space();
     			br = element("br");
-    			attr_dev(a, "href", a_href_value = "https://www.sefaria.org/" + /*ref*/ ctx[21].ref);
-    			attr_dev(a, "title", a_title_value = /*ref*/ ctx[21].type + /*ref*/ ctx[21].text);
+    			attr_dev(a, "href", a_href_value = "https://www.sefaria.org/" + /*ref*/ ctx[24].ref);
+    			attr_dev(a, "title", a_title_value = /*ref*/ ctx[24].type + /*ref*/ ctx[24].text);
     			attr_dev(a, "target", "_blank");
-    			add_location(a, file$g, 123, 8, 3340);
-    			add_location(br, file$g, 129, 8, 3503);
+    			add_location(a, file$g, 135, 8, 3731);
+    			add_location(br, file$g, 141, 8, 3894);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, a, anchor);
@@ -10405,13 +10418,13 @@ var app = (function () {
     			insert_dev(target, br, anchor);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*seferiaResults*/ 4 && t0_value !== (t0_value = /*ref*/ ctx[21].ref + "")) set_data_dev(t0, t0_value);
+    			if (dirty & /*seferiaResults*/ 4 && t0_value !== (t0_value = /*ref*/ ctx[24].ref + "")) set_data_dev(t0, t0_value);
 
-    			if (dirty & /*seferiaResults*/ 4 && a_href_value !== (a_href_value = "https://www.sefaria.org/" + /*ref*/ ctx[21].ref)) {
+    			if (dirty & /*seferiaResults*/ 4 && a_href_value !== (a_href_value = "https://www.sefaria.org/" + /*ref*/ ctx[24].ref)) {
     				attr_dev(a, "href", a_href_value);
     			}
 
-    			if (dirty & /*seferiaResults*/ 4 && a_title_value !== (a_title_value = /*ref*/ ctx[21].type + /*ref*/ ctx[21].text)) {
+    			if (dirty & /*seferiaResults*/ 4 && a_title_value !== (a_title_value = /*ref*/ ctx[24].type + /*ref*/ ctx[24].text)) {
     				attr_dev(a, "title", a_title_value);
     			}
     		},
@@ -10426,22 +10439,22 @@ var app = (function () {
     		block,
     		id: create_each_block_1$2.name,
     		type: "each",
-    		source: "(123:6) {#each seferiaResults as ref}",
+    		source: "(135:6) {#each seferiaResults as ref}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (164:4) {#each verseHistory as hist}
+    // (180:4) {#each verseHistory as hist}
     function create_each_block$4(ctx) {
     	let a;
-    	let t_value = /*hist*/ ctx[18].reference + "";
+    	let t_value = /*hist*/ ctx[21].reference + "";
     	let t;
     	let dispose;
 
-    	function click_handler_2(...args) {
-    		return /*click_handler_2*/ ctx[17](/*hist*/ ctx[18], ...args);
+    	function click_handler_3(...args) {
+    		return /*click_handler_3*/ ctx[20](/*hist*/ ctx[21], ...args);
     	}
 
     	const block = {
@@ -10449,17 +10462,17 @@ var app = (function () {
     			a = element("a");
     			t = text(t_value);
     			attr_dev(a, "href", "#");
-    			add_location(a, file$g, 164, 6, 4337);
+    			add_location(a, file$g, 180, 6, 4797);
     		},
     		m: function mount(target, anchor, remount) {
     			insert_dev(target, a, anchor);
     			append_dev(a, t);
     			if (remount) dispose();
-    			dispose = listen_dev(a, "click", click_handler_2, false, false, false);
+    			dispose = listen_dev(a, "click", click_handler_3, false, false, false);
     		},
     		p: function update(new_ctx, dirty) {
     			ctx = new_ctx;
-    			if (dirty & /*verseHistory*/ 8 && t_value !== (t_value = /*hist*/ ctx[18].reference + "")) set_data_dev(t, t_value);
+    			if (dirty & /*verseHistory*/ 8 && t_value !== (t_value = /*hist*/ ctx[21].reference + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(a);
@@ -10471,14 +10484,14 @@ var app = (function () {
     		block,
     		id: create_each_block$4.name,
     		type: "each",
-    		source: "(164:4) {#each verseHistory as hist}",
+    		source: "(180:4) {#each verseHistory as hist}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (174:4) {#if activeVerse}
+    // (190:4) {#if activeVerse}
     function create_if_block$7(ctx) {
     	let div;
     	let a0;
@@ -10550,43 +10563,43 @@ var app = (function () {
     			a10.textContent = "Targums";
     			attr_dev(a0, "href", "hebAudioLink");
     			attr_dev(a0, "target", "_blank");
-    			add_location(a0, file$g, 175, 8, 4652);
-    			attr_dev(a1, "href", a1_href_value = /*seferiaLink*/ ctx[10]());
+    			add_location(a0, file$g, 191, 8, 5112);
+    			attr_dev(a1, "href", a1_href_value = /*seferiaLink*/ ctx[11]());
     			attr_dev(a1, "target", "_blank");
-    			add_location(a1, file$g, 176, 8, 4715);
-    			add_location(br0, file$g, 177, 8, 4775);
+    			add_location(a1, file$g, 192, 8, 5175);
+    			add_location(br0, file$g, 193, 8, 5235);
     			attr_dev(a2, "href", "http://ebible.org/eng-Brenton/GEN01.htm");
     			attr_dev(a2, "target", "_blank");
-    			add_location(a2, file$g, 178, 8, 4790);
-    			add_location(br1, file$g, 181, 8, 4892);
+    			add_location(a2, file$g, 194, 8, 5250);
+    			add_location(br1, file$g, 197, 8, 5352);
     			attr_dev(a3, "href", "http://www.helding.net/greeklatinaudio/greek/");
     			attr_dev(a3, "target", "_blank");
-    			add_location(a3, file$g, 182, 8, 4907);
+    			add_location(a3, file$g, 198, 8, 5367);
     			attr_dev(a4, "href", "http://www.crosswire.org/study/rb/");
     			attr_dev(a4, "target", "_blank");
-    			add_location(a4, file$g, 185, 8, 5023);
+    			add_location(a4, file$g, 201, 8, 5483);
     			attr_dev(a5, "href", "http://www.sarshalom.us/resources/scripture/asv/bible.html#BRITHAHADASHAH");
     			attr_dev(a5, "target", "_blank");
-    			add_location(a5, file$g, 188, 8, 5128);
+    			add_location(a5, file$g, 204, 8, 5588);
     			attr_dev(a6, "href", "http://www.jewishencyclopedia.com/");
     			attr_dev(a6, "target", "_blank");
-    			add_location(a6, file$g, 193, 8, 5290);
+    			add_location(a6, file$g, 209, 8, 5750);
     			attr_dev(a7, "href", "https://www.catholic.org/encyclopedia/");
     			attr_dev(a7, "target", "_blank");
-    			add_location(a7, file$g, 196, 8, 5398);
+    			add_location(a7, file$g, 212, 8, 5858);
     			attr_dev(a8, "href", "https://www.internationalstandardbible.com/");
     			attr_dev(a8, "target", "_blank");
-    			add_location(a8, file$g, 199, 8, 5508);
+    			add_location(a8, file$g, 215, 8, 5968);
     			attr_dev(a9, "href", "https://archive.org/details/pdfy-Uy_BZ_QGsaLiJ4Zs");
     			attr_dev(a9, "target", "_blank");
-    			add_location(a9, file$g, 202, 8, 5615);
+    			add_location(a9, file$g, 218, 8, 6075);
     			attr_dev(a10, "href", "http://targum.info/targumic-texts/");
     			attr_dev(a10, "target", "_blank");
-    			add_location(a10, file$g, 207, 8, 5747);
+    			add_location(a10, file$g, 223, 8, 6207);
     			attr_dev(div, "class", "resources scroller");
     			attr_dev(div, "header", "Links");
     			attr_dev(div, "title", "Helpful links");
-    			add_location(div, file$g, 174, 6, 4574);
+    			add_location(div, file$g, 190, 6, 5034);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -10627,7 +10640,7 @@ var app = (function () {
     		block,
     		id: create_if_block$7.name,
     		type: "if",
-    		source: "(174:4) {#if activeVerse}",
+    		source: "(190:4) {#if activeVerse}",
     		ctx
     	});
 
@@ -10655,39 +10668,42 @@ var app = (function () {
     	let t9;
     	let article2;
     	let header1;
-    	let t11;
-    	let div3;
     	let span1;
-    	let t13;
+    	let t11;
     	let span2;
+    	let t13;
+    	let span3;
+    	let t14_value = /*activeVerse*/ ctx[4].reference + "";
+    	let t14;
     	let t15;
-    	let updating_verse;
+    	let div3;
+    	let span4;
+    	let t16_value = /*activeVerse*/ ctx[4].text + "";
     	let t16;
+    	let t17;
     	let article3;
     	let header2;
-    	let t18;
+    	let t19;
     	let article4;
-    	let header3;
     	let t20;
-    	let t21;
     	let article5;
-    	let header4;
-    	let t23;
+    	let header3;
+    	let t22;
     	let div4;
-    	let t24;
+    	let t23;
     	let article6;
-    	let header5;
-    	let t26;
+    	let header4;
+    	let t25;
     	let div5;
     	let current;
     	let dispose;
 
     	function field_value_binding(value) {
-    		/*field_value_binding*/ ctx[13].call(null, value);
+    		/*field_value_binding*/ ctx[16].call(null, value);
     	}
 
     	let field_props = {
-    		classes: "inline-block w-4/5",
+    		classes: "",
     		name: "search",
     		placeholder: "search..."
     	};
@@ -10698,22 +10714,9 @@ var app = (function () {
 
     	const field = new Field({ props: field_props, $$inline: true });
     	binding_callbacks.push(() => bind(field, "value", field_value_binding));
-    	field.$on("keyup", /*search*/ ctx[8]);
+    	field.$on("keyup", /*search*/ ctx[9]);
     	let if_block0 = /*searchResults*/ ctx[1].length && create_if_block_2$2(ctx);
     	let if_block1 = /*seferiaResults*/ ctx[2].length && create_if_block_1$4(ctx);
-
-    	function bibleverse_verse_binding(value) {
-    		/*bibleverse_verse_binding*/ ctx[16].call(null, value);
-    	}
-
-    	let bibleverse_props = {};
-
-    	if (/*activeVerse*/ ctx[4] !== void 0) {
-    		bibleverse_props.verse = /*activeVerse*/ ctx[4];
-    	}
-
-    	const bibleverse = new BibleVerse({ props: bibleverse_props, $$inline: true });
-    	binding_callbacks.push(() => bind(bibleverse, "verse", bibleverse_verse_binding));
 
     	const biblereader = new BibleReader({
     			props: { activeBook: /*activeBook*/ ctx[5] },
@@ -10756,88 +10759,91 @@ var app = (function () {
     			t9 = space();
     			article2 = element("article");
     			header1 = element("header");
-    			header1.textContent = "TRANSLATIONS";
-    			t11 = space();
-    			div3 = element("div");
     			span1 = element("span");
     			span1.textContent = "«";
-    			t13 = space();
+    			t11 = space();
     			span2 = element("span");
     			span2.textContent = "»";
+    			t13 = text("\n    TRANSLATIONS\n    ");
+    			span3 = element("span");
+    			t14 = text(t14_value);
     			t15 = space();
-    			create_component(bibleverse.$$.fragment);
-    			t16 = space();
+    			div3 = element("div");
+    			span4 = element("span");
+    			t16 = text(t16_value);
+    			t17 = space();
     			article3 = element("article");
     			header2 = element("header");
     			header2.textContent = "LEMMATA";
-    			t18 = space();
+    			t19 = space();
     			article4 = element("article");
-    			header3 = element("header");
-    			header3.textContent = "READER";
-    			t20 = space();
     			create_component(biblereader.$$.fragment);
-    			t21 = space();
+    			t20 = space();
     			article5 = element("article");
-    			header4 = element("header");
-    			header4.textContent = "HISTORY";
-    			t23 = space();
+    			header3 = element("header");
+    			header3.textContent = "HISTORY";
+    			t22 = space();
     			div4 = element("div");
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
 
-    			t24 = space();
+    			t23 = space();
     			article6 = element("article");
-    			header5 = element("header");
-    			header5.textContent = "LINKS";
-    			t26 = space();
+    			header4 = element("header");
+    			header4.textContent = "LINKS";
+    			t25 = space();
     			div5 = element("div");
     			if (if_block2) if_block2.c();
     			document.title = "Remnant";
-    			attr_dev(span0, "class", "mr-1");
-    			add_location(span0, file$g, 104, 4, 2870);
-    			attr_dev(div0, "class", "search-input flex justify-between items-baseline");
-    			add_location(div0, file$g, 97, 2, 2655);
+    			attr_dev(span0, "class", "pl -c");
+    			set_style(span0, "padding-top", "20px");
+    			add_location(span0, file$g, 116, 4, 3200);
+    			attr_dev(div0, "class", "row i");
+    			add_location(div0, file$g, 109, 2, 3046);
     			attr_dev(article0, "id", "search");
-    			attr_dev(article0, "class", "card scroller p-1");
-    			add_location(article0, file$g, 96, 0, 2605);
-    			add_location(header0, file$g, 116, 2, 3140);
-    			add_location(button, file$g, 119, 6, 3192);
-    			add_location(div1, file$g, 118, 4, 3180);
-    			add_location(div2, file$g, 117, 2, 3170);
+    			attr_dev(article0, "class", "card scroller e++ p");
+    			add_location(article0, file$g, 108, 0, 2994);
+    			add_location(header0, file$g, 128, 2, 3531);
+    			add_location(button, file$g, 131, 6, 3583);
+    			add_location(div1, file$g, 130, 4, 3571);
+    			add_location(div2, file$g, 129, 2, 3561);
     			attr_dev(article1, "id", "references");
-    			add_location(article1, file$g, 115, 0, 3112);
-    			add_location(header1, file$g, 135, 2, 3601);
+    			add_location(article1, file$g, 127, 0, 3503);
     			attr_dev(span1, "class", "pointer");
     			attr_dev(span1, "title", "Previous");
-    			add_location(span1, file$g, 137, 4, 3681);
+    			add_location(span1, file$g, 148, 4, 4001);
     			attr_dev(span2, "class", "pointer");
     			attr_dev(span2, "title", "Next");
-    			add_location(span2, file$g, 143, 4, 3821);
+    			add_location(span2, file$g, 154, 4, 4141);
+    			attr_dev(span3, "class", "link");
+    			add_location(span3, file$g, 161, 4, 4294);
+    			add_location(header1, file$g, 147, 2, 3988);
+    			attr_dev(span4, "class", "link");
+    			add_location(span4, file$g, 167, 4, 4452);
     			attr_dev(div3, "id", "active-verse");
-    			attr_dev(div3, "class", "o-container");
-    			add_location(div3, file$g, 136, 2, 3633);
+    			attr_dev(div3, "class", "");
+    			add_location(div3, file$g, 165, 2, 4414);
     			attr_dev(article2, "id", "active-verse");
-    			attr_dev(article2, "class", "card p-1");
-    			add_location(article2, file$g, 134, 0, 3554);
-    			add_location(header2, file$g, 154, 2, 4043);
+    			attr_dev(article2, "class", "card");
+    			add_location(article2, file$g, 146, 0, 3945);
+    			add_location(header2, file$g, 171, 2, 4542);
     			attr_dev(article3, "id", "lemmata");
-    			add_location(article3, file$g, 153, 0, 4018);
-    			add_location(header3, file$g, 157, 2, 4125);
+    			add_location(article3, file$g, 170, 0, 4517);
     			attr_dev(article4, "id", "reader");
-    			attr_dev(article4, "class", "card scroller");
-    			add_location(article4, file$g, 156, 0, 4079);
-    			add_location(header4, file$g, 161, 2, 4249);
+    			attr_dev(article4, "class", "");
+    			add_location(article4, file$g, 173, 0, 4578);
+    			add_location(header3, file$g, 177, 2, 4709);
     			attr_dev(div4, "class", "history");
-    			add_location(div4, file$g, 162, 2, 4276);
+    			add_location(div4, file$g, 178, 2, 4736);
     			attr_dev(article5, "id", "history");
-    			add_location(article5, file$g, 160, 0, 4224);
-    			add_location(header5, file$g, 170, 2, 4500);
+    			add_location(article5, file$g, 176, 0, 4684);
+    			add_location(header4, file$g, 186, 2, 4960);
     			attr_dev(div5, "class", "links");
-    			add_location(div5, file$g, 171, 2, 4525);
+    			add_location(div5, file$g, 187, 2, 4985);
     			attr_dev(article6, "id", "links");
-    			add_location(article6, file$g, 169, 0, 4477);
+    			add_location(article6, file$g, 185, 0, 4937);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10864,44 +10870,46 @@ var app = (function () {
     			insert_dev(target, t9, anchor);
     			insert_dev(target, article2, anchor);
     			append_dev(article2, header1);
-    			append_dev(article2, t11);
+    			append_dev(header1, span1);
+    			append_dev(header1, t11);
+    			append_dev(header1, span2);
+    			append_dev(header1, t13);
+    			append_dev(header1, span3);
+    			append_dev(span3, t14);
+    			append_dev(article2, t15);
     			append_dev(article2, div3);
-    			append_dev(div3, span1);
-    			append_dev(div3, t13);
-    			append_dev(div3, span2);
-    			append_dev(div3, t15);
-    			mount_component(bibleverse, div3, null);
-    			insert_dev(target, t16, anchor);
+    			append_dev(div3, span4);
+    			append_dev(span4, t16);
+    			insert_dev(target, t17, anchor);
     			insert_dev(target, article3, anchor);
     			append_dev(article3, header2);
-    			insert_dev(target, t18, anchor);
+    			insert_dev(target, t19, anchor);
     			insert_dev(target, article4, anchor);
-    			append_dev(article4, header3);
-    			append_dev(article4, t20);
     			mount_component(biblereader, article4, null);
-    			insert_dev(target, t21, anchor);
+    			insert_dev(target, t20, anchor);
     			insert_dev(target, article5, anchor);
-    			append_dev(article5, header4);
-    			append_dev(article5, t23);
+    			append_dev(article5, header3);
+    			append_dev(article5, t22);
     			append_dev(article5, div4);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(div4, null);
     			}
 
-    			insert_dev(target, t24, anchor);
+    			insert_dev(target, t23, anchor);
     			insert_dev(target, article6, anchor);
-    			append_dev(article6, header5);
-    			append_dev(article6, t26);
+    			append_dev(article6, header4);
+    			append_dev(article6, t25);
     			append_dev(article6, div5);
     			if (if_block2) if_block2.m(div5, null);
     			current = true;
     			if (remount) run_all(dispose);
 
     			dispose = [
-    				listen_dev(button, "click", /*getSeferiaLinks*/ ctx[9], false, false, false),
-    				listen_dev(span1, "click", /*click_handler*/ ctx[14], false, false, false),
-    				listen_dev(span2, "click", /*click_handler_1*/ ctx[15], false, false, false)
+    				listen_dev(button, "click", /*getSeferiaLinks*/ ctx[10], false, false, false),
+    				listen_dev(span1, "click", /*click_handler*/ ctx[17], false, false, false),
+    				listen_dev(span2, "click", /*click_handler_1*/ ctx[18], false, false, false),
+    				listen_dev(span3, "click", /*click_handler_2*/ ctx[19], false, false, false)
     			];
     		},
     		p: function update(ctx, [dirty]) {
@@ -10949,15 +10957,8 @@ var app = (function () {
     				if_block1 = null;
     			}
 
-    			const bibleverse_changes = {};
-
-    			if (!updating_verse && dirty & /*activeVerse*/ 16) {
-    				updating_verse = true;
-    				bibleverse_changes.verse = /*activeVerse*/ ctx[4];
-    				add_flush_callback(() => updating_verse = false);
-    			}
-
-    			bibleverse.$set(bibleverse_changes);
+    			if ((!current || dirty & /*activeVerse*/ 16) && t14_value !== (t14_value = /*activeVerse*/ ctx[4].reference + "")) set_data_dev(t14, t14_value);
+    			if ((!current || dirty & /*activeVerse*/ 16) && t16_value !== (t16_value = /*activeVerse*/ ctx[4].text + "")) set_data_dev(t16, t16_value);
     			const biblereader_changes = {};
     			if (dirty & /*activeBook*/ 32) biblereader_changes.activeBook = /*activeBook*/ ctx[5];
     			biblereader.$set(biblereader_changes);
@@ -11003,14 +11004,12 @@ var app = (function () {
     			if (current) return;
     			transition_in(field.$$.fragment, local);
     			transition_in(if_block0);
-    			transition_in(bibleverse.$$.fragment, local);
     			transition_in(biblereader.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(field.$$.fragment, local);
     			transition_out(if_block0);
-    			transition_out(bibleverse.$$.fragment, local);
     			transition_out(biblereader.$$.fragment, local);
     			current = false;
     		},
@@ -11024,16 +11023,15 @@ var app = (function () {
     			if (if_block1) if_block1.d();
     			if (detaching) detach_dev(t9);
     			if (detaching) detach_dev(article2);
-    			destroy_component(bibleverse);
-    			if (detaching) detach_dev(t16);
+    			if (detaching) detach_dev(t17);
     			if (detaching) detach_dev(article3);
-    			if (detaching) detach_dev(t18);
+    			if (detaching) detach_dev(t19);
     			if (detaching) detach_dev(article4);
     			destroy_component(biblereader);
-    			if (detaching) detach_dev(t21);
+    			if (detaching) detach_dev(t20);
     			if (detaching) detach_dev(article5);
     			destroy_each(each_blocks, detaching);
-    			if (detaching) detach_dev(t24);
+    			if (detaching) detach_dev(t23);
     			if (detaching) detach_dev(article6);
     			if (if_block2) if_block2.d();
     			run_all(dispose);
@@ -11078,15 +11076,30 @@ var app = (function () {
     		localStorage.setItem("verse_id-" + activeVerse.id, JSON.stringify(activeVerse));
     	}
 
+    	async function getBook(book) {
+    		let book_id = typeof book === "object" ? book.book_id : book;
+    		$$invalidate(5, activeBook = await frontend_2.get("/books/" + book_id));
+    	}
+
     	function setActiveVerse(event) {
     		console.log(event.detail);
     		getActiveVerse(event.detail.verse);
+    	}
+
+    	function setActiveBook(event) {
+    		console.log(event.detail);
+    		getActiveBook(event.detail.verse.book_id);
     	}
 
     	function getActiveVerse(verse) {
     		let verse_id = typeof verse === "object" ? verse.id : verse;
     		$$invalidate(3, verseHistory = [activeVerse, ...verseHistory]);
     		getVerse(verse_id);
+    	}
+
+    	function getActiveBook(id) {
+    		let book_id = typeof id === "object" ? id.book_id : id;
+    		getBook(book_id);
     	}
 
     	async function getVerse(verse_id) {
@@ -11149,13 +11162,8 @@ var app = (function () {
 
     	const click_handler = () => getActiveVerse(activeVerse.id - 1);
     	const click_handler_1 = () => getActiveVerse(activeVerse.id + 1);
-
-    	function bibleverse_verse_binding(value) {
-    		activeVerse = value;
-    		$$invalidate(4, activeVerse);
-    	}
-
-    	const click_handler_2 = hist => getActiveVerse(hist.id);
+    	const click_handler_2 = () => getActiveBook(activeVerse);
+    	const click_handler_3 = hist => getActiveVerse(hist.id);
 
     	$$self.$capture_state = () => ({
     		auth: frontend_1,
@@ -11171,10 +11179,13 @@ var app = (function () {
     		seferiaResults,
     		verseHistory,
     		startUp,
+    		getBook,
     		getStorage,
     		setStorage,
     		setActiveVerse,
+    		setActiveBook,
     		getActiveVerse,
+    		getActiveBook,
     		getVerse,
     		search,
     		getSeferiaLinks,
@@ -11211,16 +11222,19 @@ var app = (function () {
     		activeBook,
     		setActiveVerse,
     		getActiveVerse,
+    		getActiveBook,
     		search,
     		getSeferiaLinks,
     		seferiaLink,
     		startUp,
+    		getBook,
+    		setActiveBook,
     		getVerse,
     		field_value_binding,
     		click_handler,
     		click_handler_1,
-    		bibleverse_verse_binding,
-    		click_handler_2
+    		click_handler_2,
+    		click_handler_3
     	];
     }
 

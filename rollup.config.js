@@ -82,7 +82,14 @@ export default {
       //     })
       //   }
       // }
-      preprocess: preprocess
+      preprocess: sveltePreprocess({
+        scss: {
+          includePaths: ['src']
+        },
+        postcss: {
+          plugins: [require('autoprefixer')]
+        }
+      })
     }),
 
     // If you have external dependencies installed from

@@ -22,15 +22,18 @@
 </script>
 
 <style>
-  .ref {
-    font-size: 16px;
-  }
+
 </style>
 
-<div id={verse.verse_id} class="verse">
+<div id={verse.verse_id} class="row">
   {#if !readerView}
     <!-- <sup v-if="verse.fathers.length" title="Church references"> [{{ verse.fathers.length }}] </sup> -->
-    <a class="ref" href="#" on:click={clickVerse} title="Set Current verse">
+    <a
+      class="v--"
+      style="max-width: 10vmin;"
+      href="#"
+      on:click={clickVerse}
+      title="Set Current verse">
       <strong>{verse.reference}</strong>
     </a>
     <a
@@ -40,9 +43,9 @@
       <span class="bible-text">{verse.text}</span>
     </a>
   {:else}
-    <div>
-      <p class="bible-lan">
-        <bdi>{verse.translation.bible_hub}</bdi>
+    <div class="px_">
+      <p class="bible-lan" title={verse.reference}>
+        <bdi>{verse.text}</bdi>
       </p>
     </div>
   {/if}

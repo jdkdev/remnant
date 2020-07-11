@@ -9,7 +9,7 @@
     "watch:rollup": "rollup -c -w",
     "watch:routify": "routify",
     "start": "sirv dist --single",
-    "css-dev": "node-sass --watch --recursive --output dist/css --source-map true --source-map-contents scss",
+    "css-dev": "node-sass --watch --recursive --output dist/css --source-map true --source-map-contents ../../FRONTIER/styles",
     "watch:css": "run-s css-dev",
     "tar": "tar -czvf $NAME-spa.tar.gz -C dist .",
     "pack": "run-s build tar",

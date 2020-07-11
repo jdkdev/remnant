@@ -26,6 +26,10 @@
       JSON.stringify(activeVerse)
     );
   }
+  async function getBook(book) {
+    let book_id = typeof book === "object" ? book.book_id : book;
+    activeBook = await ajx.get("/books/" + book_id);
+  }
   function getStorage(item) {
     let retrieved = localStorage.getItem(item);
     return retrieved ? JSON.parse(retrieved) : null;
@@ -38,10 +42,18 @@
     console.log(event.detail);
     getActiveVerse(event.detail.verse);
   }
+  function setActiveBook(event) {
+    console.log(event.detail);
+    getActiveBook(event.detail.verse.book_id);
+  }
   function getActiveVerse(verse) {
     let verse_id = typeof verse === "object" ? verse.id : verse;
     verseHistory = [activeVerse, ...verseHistory];
     getVerse(verse_id);
+  }
+  function getActiveBook(id) {
+    let book_id = typeof id === "object" ? id.book_id : id;
+    getBook(book_id);
   }
   async function getVerse(verse_id) {
     let key = "verse_id-" + verse_id;
@@ -94,21 +106,21 @@
   <title>Remnant</title>
 </svelte:head>
 
-<article id="search" class="card scroller p-1">
-  <div class="search-input flex justify-between items-baseline">
+<article id="search" class="card scroller e++ p">
+  <div class="row i">
     <Field
-      classes="inline-block w-4/5"
+      classes=""
       name="search"
       placeholder="search..."
       on:keyup={search}
       bind:value={terms} />
-    <span class="mr-1">{searchResults.length}</span>
+    <span class="pl -c" style="padding-top: 20px;">{searchResults.length}</span>
   </div>
 
   {#if searchResults.length}
     <article id="search-results" class="">
       {#each searchResults as verse}
-        <Verse {verse} />
+        <Verse {verse} on:verseChanged={setActiveVerse} />
       {/each}
     </article>
   {/if}
@@ -132,9 +144,8 @@
     {/if}
   </div>
 </article>
-<article id="active-verse" class="card p-1">
-  <header>TRANSLATIONS</header>
-  <div id="active-verse" class="o-container">
+<article id="active-verse" class="card">
+  <header>
     <span
       class="pointer"
       title="Previous"
@@ -147,15 +158,20 @@
       on:click={() => getActiveVerse(activeVerse.id + 1)}>
       &raquo;
     </span>
+    TRANSLATIONS
+    <span class="link" on:click={() => getActiveBook(activeVerse)}>
+      {activeVerse.reference}
+    </span>
+  </header>
+  <div id="active-verse" class="">
 
-    <BibleVerse bind:verse={activeVerse} />
+    <span class="link">{activeVerse.text}</span>
   </div>
 </article>
 <article id="lemmata">
   <header>LEMMATA</header>
 </article>
-<article id="reader" class="card scroller">
-  <header>READER</header>
+<article id="reader" class="">
   <BibleReader {activeBook} on:verseChanged={setActiveVerse} />
 </article>
 <article id="history">
