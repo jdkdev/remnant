@@ -18,6 +18,9 @@
   });
 
   //Functions
+  function clearVerseHistory() {
+    verseHistory = [];
+  }
   async function startUp() {
     activeBook = await ajx.get("/books/22");
     activeVerse = activeBook.verses[0];
@@ -146,26 +149,28 @@
 </article>
 <article id="active-verse" class="card">
   <header>
-    <span
-      class="pointer"
-      title="Previous"
-      on:click={() => getActiveVerse(activeVerse.id - 1)}>
-      &laquo;
-    </span>
-    <span
-      class="pointer"
-      title="Next"
-      on:click={() => getActiveVerse(activeVerse.id + 1)}>
-      &raquo;
-    </span>
     TRANSLATIONS
     <span class="link" on:click={() => getActiveBook(activeVerse)}>
       {activeVerse.reference}
     </span>
   </header>
-  <div id="active-verse" class="">
+  <div class="row i e _x">
+    <span
+      class="pointer v** px_"
+      title="Previous"
+      on:click={() => getActiveVerse(activeVerse.id - 1)}>
+      &laquo;
+    </span>
+    <div id="active-verse" class="-g">
 
-    <span class="link">{activeVerse.text}</span>
+      <span class="link" style="max-width: 170px;">{activeVerse.text}</span>
+    </div>
+    <span
+      class="pointer v** px_"
+      title="Next"
+      on:click={() => getActiveVerse(activeVerse.id + 1)}>
+      &raquo;
+    </span>
   </div>
 </article>
 <article id="lemmata">
@@ -175,27 +180,26 @@
   <BibleReader {activeBook} on:verseChanged={setActiveVerse} />
 </article>
 <article id="history">
-  <header>HISTORY</header>
+  <header on:click={clearVerseHistory}>HISTORY</header>
   <div class="history">
     {#each verseHistory as hist}
       <a href="#" on:click={() => getActiveVerse(hist.id)}>{hist.reference}</a>
     {/each}
   </div>
-  <!--der RESOURCES and LINKS -->
+  <!--RESOURCES and LINKS -->
 </article>
 <article id="links">
-  <header>LINKS</header>
+  <!-- <header>LINKS</header> -->
+  <hr />
   <div class="links">
 
     {#if activeVerse}
       <div class="resources scroller" header="Links" title="Helpful links">
         <a href="hebAudioLink" target="_blank">HEB - Audio</a>
         <a href={seferiaLink()} target="_blank">Seferia</a>
-        <br />
         <a href="http://ebible.org/eng-Brenton/GEN01.htm" target="_blank">
           LXX
         </a>
-        <br />
         <a href="http://www.helding.net/greeklatinaudio/greek/" target="_blank">
           Greek Audio
         </a>

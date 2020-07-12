@@ -36,9 +36,6 @@
     #links {
     }
     #footer {
-      &:after {
-        content: "Footer";
-      }
     }
     display: flex;
     flex-flow: column;
@@ -74,7 +71,7 @@
         // @include debug-bps;
       }
       #history {
-        @include g-x(-2, -1);
+        @include g-x;
       }
       #links {
         @include g-x;
